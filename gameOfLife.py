@@ -44,5 +44,5 @@ def main():
     ani = FuncAnimation(fig, update, fargs=(img, grid, N, ), frames=10, interval=100, save_count=50) 
     plt.show()
 
-if name == 'main':
+if __name__ == '__main__':
     main()

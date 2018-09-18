@@ -2,13 +2,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation 
 
-alive = 1
-dead = 0
-state = [alive, dead]
-
 #fills the grid with NN random tiles.
 def fillGrid(N): 
-    return np.random.choice(state, NN, p=[0.25, 0.75]).reshape(N, N) 
+    return np.random.choice([1,0], N*N, p=[0.25, 0.75]).reshape(N, N) 
 
 #updates each tile in the grid
 def update(frameNum, img, grid, N):
@@ -22,10 +18,10 @@ def update(frameNum, img, grid, N):
                               grid[(x+1)%N,(y+1)%N])
 
             # apply Conway's rules based on the number calculated above
-            if grid[x, y] == alive and ((aliveNeighbors < 2) or (aliveNeighbors > 3)): 
-                updatedGrid[x, y] = dead 
+            if grid[x, y] == 1 and ((aliveNeighbors < 2) or (aliveNeighbors > 3)): 
+                updatedGrid[x, y] = 0 
             elif aliveNeighbors == 3: 
-                updatedGrid[x, y] = alive 
+                updatedGrid[x, y] = 1 
 
     # update data 
     img.set_data(updatedGrid) 
